@@ -12,8 +12,6 @@ English Agent App/
 ├── QUICKSTART.md               # Quick start guide
 ├── test_translations.html      # Test page with multi-language text
 │
-├── backend/                    # [LEGACY] Python backend (no longer used)
-│
 ├── frontend/EnglishAgent/      # Swift macOS app
 │   ├── EnglishAgent.xcodeproj
 │   └── EnglishAgent/
@@ -30,6 +28,7 @@ English Agent App/
 │           ├── APIService.swift           # Direct OpenRouter API client
 │           ├── KeychainService.swift      # Secure API key storage
 │           ├── ClipboardService.swift     # Text capture
+│           ├── HistoryService.swift      # Translation history (JSON + markdown)
 │           └── AccessibilityManager.swift # Accessibility permissions
 ```
 
