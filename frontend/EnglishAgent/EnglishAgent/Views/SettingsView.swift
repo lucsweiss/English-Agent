@@ -6,7 +6,7 @@ extension KeyboardShortcuts.Name {
 }
 
 struct SettingsView: View {
-    @AppStorage("systemPrompt") private var systemPrompt = "Translate the following text to English. Only output the translation, nothing else."
+    @AppStorage("systemPrompt") private var systemPrompt = "Correct my English and give me rules so I never make these mistakes again.\n\nNo grammar jargon — explain like you're talking to a friend.\n\nFocus only on actual grammar mistakes, not on better ways to express ideas.\n\nFor each rule, show a wrong vs. right example. Keep the rules short and memorable.\n\n(If there are no mistakes, just say it is correct and don't send any rules)\n\nTEXT:"
     @AppStorage("targetLanguage") private var targetLanguage = "English"
     @AppStorage("modelName") private var modelName = "google/gemini-3-flash-preview"
 
@@ -96,13 +96,13 @@ struct SettingsView: View {
     }
 
     private func updateSystemPrompt(language: String) {
-        systemPrompt = "Translate the following text to \(language). Only output the translation, nothing else."
+        systemPrompt = "Correct my \(language) and give me rules so I never make these mistakes again.\n\nNo grammar jargon — explain like you're talking to a friend.\n\nFocus only on actual grammar mistakes, not on better ways to express ideas.\n\nFor each rule, show a wrong vs. right example. Keep the rules short and memorable.\n\n(If there are no mistakes, just say it is correct and don't send any rules)\n\nTEXT:"
     }
 
     private func resetDefaults() {
         modelName = "google/gemini-3-flash-preview"
         targetLanguage = "English"
-        systemPrompt = "Translate the following text to English. Only output the translation, nothing else."
+        systemPrompt = "Correct my English and give me rules so I never make these mistakes again.\n\nNo grammar jargon — explain like you're talking to a friend.\n\nFocus only on actual grammar mistakes, not on better ways to express ideas.\n\nFor each rule, show a wrong vs. right example. Keep the rules short and memorable.\n\n(If there are no mistakes, just say it is correct and don't send any rules)\n\nTEXT:"
         KeyboardShortcuts.reset(.translateSelection)
     }
 }

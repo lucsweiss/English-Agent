@@ -87,7 +87,7 @@ actor APIService {
         let model = UserDefaults.standard.string(forKey: "modelName") ?? defaultModel
         let prompt = systemPrompt
             ?? UserDefaults.standard.string(forKey: "systemPrompt")
-            ?? "Translate the following text to English. Only output the translation, nothing else."
+            ?? "Correct my English and give me rules so I never make these mistakes again.\n\nNo grammar jargon — explain like you're talking to a friend.\n\nFocus only on actual grammar mistakes, not on better ways to express ideas.\n\nFor each rule, show a wrong vs. right example. Keep the rules short and memorable.\n\n(If there are no mistakes, just say it is correct and don't send any rules)\n\nTEXT:"
 
         guard let url = URL(string: openRouterURL) else {
             throw APIServiceError.invalidURL
