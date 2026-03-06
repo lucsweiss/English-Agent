@@ -4,20 +4,30 @@
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange)](https://swift.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Instant translation from your menu bar. Select any text, press **Cmd+Shift+T**, and get a translation in a floating overlay — powered by any LLM via [OpenRouter](https://openrouter.ai).
+Process any selected text with an LLM from your menu bar. Select text, press **Cmd+Shift+T**, and get the result in a floating overlay — powered by any model via [OpenRouter](https://openrouter.ai).
+
+Use it to fix your grammar, translate text, rephrase sentences, summarize paragraphs, or anything else you can describe in a system prompt.
 
 <!-- ![English Agent screenshot](screenshot.png) -->
 
 ## Features
 
-- **Global shortcut** — Translate selected text from any app with Cmd+Shift+T
+- **Global shortcut** — Process selected text from any app with Cmd+Shift+T
 - **Floating overlay** — Results appear in a non-intrusive panel near your cursor
+- **Fully customizable prompt** — Fix grammar, translate, rephrase, summarize — whatever you need
 - **Any LLM model** — Uses OpenRouter to access GPT-4, Gemini, Claude, Llama, and more
-- **Configurable** — Change target language, model, and system prompt in Settings
-- **Markdown rendering** — Rich formatting for structured translations
+- **Markdown rendering** — Rich formatting for structured responses
 - **Secure** — API key stored in macOS Keychain, never in plain text
-- **Translation history** — Logs saved as JSON for review or analysis
+- **History logging** — All inputs and outputs saved as JSON for review or analysis
 - **Lightweight** — Runs as a menu bar app with zero dock clutter
+
+## Use Cases
+
+- **Grammar & writing** — Select your draft text, get corrected English back
+- **Translation** — Translate selected text from any language
+- **Rephrasing** — Rewrite text to be more formal, casual, or concise
+- **Summarization** — Condense long paragraphs into key points
+- **Anything else** — Just change the system prompt in Settings
 
 ## How It Works
 
@@ -25,7 +35,7 @@ Instant translation from your menu bar. Select any text, press **Cmd+Shift+T**, 
 2. Press **Cmd+Shift+T** (customizable)
 3. The app captures the selected text via macOS Accessibility APIs
 4. Sends it to the OpenRouter API with your configured prompt
-5. Displays the translated result in a floating panel
+5. Displays the result in a floating panel
 
 No backend server — the app calls the API directly from Swift.
 
@@ -70,8 +80,8 @@ All settings are accessible from the menu bar icon > Settings:
 |---------|---------|-------------|
 | API Key | — | Your OpenRouter API key (stored in Keychain) |
 | Model | `google/gemini-3-flash-preview` | Any model available on [OpenRouter](https://openrouter.ai/models) |
-| Target Language | English | Language to translate into |
-| System Prompt | Auto-generated | Customizable instruction sent to the LLM |
+| Target Language | English | The language used in the auto-generated prompt |
+| System Prompt | Auto-generated from target language | Fully customizable — change it to do grammar fixes, rephrasing, summarization, or anything |
 | Keyboard Shortcut | Cmd+Shift+T | Customizable via the recorder |
 
 ## Project Structure
@@ -84,14 +94,14 @@ frontend/EnglishAgent/
     ├── AppDelegate.swift              # Menu bar setup, shortcut handling
     ├── FloatingPanel.swift            # NSPanel overlay + controller
     ├── Views/
-    │   ├── ResponseView.swift         # Translation display with Markdown
+    │   ├── ResponseView.swift         # Response display with Markdown
     │   ├── SettingsView.swift         # Settings UI
     │   └── LoadingView.swift          # Loading spinner
     └── Services/
         ├── APIService.swift           # OpenRouter API client
         ├── KeychainService.swift      # Keychain CRUD for API key
         ├── ClipboardService.swift     # Text capture via Accessibility
-        ├── HistoryService.swift       # Translation history logging
+        ├── HistoryService.swift       # History logging
         └── AccessibilityManager.swift # Permission management
 ```
 
