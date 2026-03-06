@@ -31,7 +31,10 @@ class HistoryService {
         return appSupport.appendingPathComponent("EnglishAgent/history", isDirectory: true)
     }
 
-    private let markdownDirectory = URL(fileURLWithPath: "/Users/lucasweiss/Downloads/Life/06-personal/english/grammar")
+    private var markdownDirectory: URL {
+        FileManager.default.homeDirectoryForCurrentUser
+            .appendingPathComponent("Downloads/Life/06-personal/english/grammar", isDirectory: true)
+    }
 
     private init() {
         try? fileManager.createDirectory(at: historyDirectory, withIntermediateDirectories: true)

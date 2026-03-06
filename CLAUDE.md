@@ -8,10 +8,6 @@ A macOS menu bar app for instant text translation via LLM. Press **Cmd+Shift+T**
 English Agent App/
 ├── .gitignore
 ├── CLAUDE.md
-├── DEPLOYMENT.md               # Deployment/packaging guide
-├── QUICKSTART.md               # Quick start guide
-├── test_translations.html      # Test page with multi-language text
-│
 ├── frontend/EnglishAgent/      # Swift macOS app
 │   ├── EnglishAgent.xcodeproj
 │   └── EnglishAgent/
@@ -26,17 +22,17 @@ English Agent App/
 │       │   └── LoadingView.swift
 │       └── Services/
 │           ├── APIService.swift           # Direct OpenRouter API client
-│           ├── KeychainService.swift      # Secure API key storage
-│           ├── ClipboardService.swift     # Text capture
-│           ├── HistoryService.swift      # Translation history (JSON + markdown)
-│           └── AccessibilityManager.swift # Accessibility permissions
+│           ├── KeychainService.swift       # Secure API key storage
+│           ├── ClipboardService.swift      # Text capture
+│           ├── HistoryService.swift        # Translation history (JSON + markdown)
+│           └── AccessibilityManager.swift  # Accessibility permissions
 ```
 
 ## Running the App
 
 Build with Xcode or:
 ```bash
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcodebuild -project frontend/EnglishAgent/EnglishAgent.xcodeproj -scheme EnglishAgent build
+xcodebuild -project frontend/EnglishAgent/EnglishAgent.xcodeproj -scheme EnglishAgent build
 ```
 
 App location after build:
@@ -67,15 +63,3 @@ The app calls the OpenRouter API (`https://openrouter.ai/api/v1/chat/completions
 ## UI Notes
 
 - **Floating panel background**: Uses a plain `Color.white` SwiftUI background with `RoundedRectangle` clip shape in `ResponseView.swift`. Do NOT use `NSVisualEffectView` for the panel background — its material system always renders as translucent gray and overrides any `backgroundColor` set on the layer. The panel itself (`FloatingPanel.swift`) has `backgroundColor = .white` with `isOpaque = false` for rounded corner compositing.
-
-## Life System Integration
-
-This project's notes, todos, bugs, and docs live in the Life system at:
-`/Users/lucasweiss/Downloads/Life/03-projects/english-agent-app/`
-
-**Before creating or modifying any files there, you MUST read:**
-1. `/Users/lucasweiss/Downloads/Life/CLAUDE.md` — operating instructions and rules
-2. `/Users/lucasweiss/Downloads/Life/_templates.md` — note formats and frontmatter specs
-3. `/Users/lucasweiss/Downloads/Life/03-projects/english-agent-app/_context.md` — project state
-
-Follow those rules exactly. Every file you create in the Life system must comply with its conventions.
